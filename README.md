@@ -1,3 +1,5 @@
+# About the model:
+
 An Linear Regression Model that predicts the insurance costs basing on the following informations:
 
  **age:** age of primary beneficiary.</br>
