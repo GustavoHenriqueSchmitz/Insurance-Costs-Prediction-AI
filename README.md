@@ -2,15 +2,16 @@ An Linear Regression Model that predicts the insurance costs basing on the follo
 
 
 
-    **age:** age of primary beneficiary
 
-    **sex:** insurance contractor gender, female, male
+ **age:** age of primary beneficiary
 
-    **bmi:** Body mass index, providing an understanding of body, weights that are relatively high or low relative to height,
-    objective index of body weight (kg / m ^ 2) using the ratio of height to weight, ideally 18.5 to 24.9
+ **sex:** insurance contractor gender, female, male
 
-    **children:** Number of children covered by health insurance / Number of dependents
+ **bmi:** Body mass index, providing an understanding of body, weights that are relatively high or low relative to height,
+ objective index of body weight (kg / m ^ 2) using the ratio of height to weight, ideally 18.5 to 24.9
 
-    **smoker:** Smoking
-    
-    **region:** the beneficiary's residential area in the US, northeast, southeast, southwest, northwest.
+ **children:** Number of children covered by health insurance / Number of dependents
+
+ **smoker:** Smoking
+ 
+ **region:** the beneficiary's residential area in the US, northeast, southeast, southwest, northwest.
