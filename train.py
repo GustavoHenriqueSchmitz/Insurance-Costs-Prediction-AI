@@ -1,32 +1,44 @@
-import tensorflow as tf
-from tensorflow import keras
+# load libraries
 import pandas as pd
-import numpy as np
+import tensorflow as tf
 import pickle
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import MinMaxScaler, OneHotEncoder
+from sklearn.compose import make_column_transformer
 
-# Getting the data
-train_data = pd.read_csv('./train.csv')
-test_data = pd.read_csv('./test.csv')
+# load dataset
+df = pd.read_csv("insurance.csv")
 
-# Preprocessing the data for train
-x_train = pd.get_dummies(train_data.drop('charges', axis=1))
-train_columns = x_train.columns  # Save the column names
-x_train = np.array(x_train).astype('float32')  # Convert to numpy array
-y_train = train_data['charges']
+# Create X & y
+features = df.drop("charges", axis=1)
+labels = df["charges"]
 
-# Save the train_columns for later use
-with open('train_columns.pkl', 'wb') as f:
-    pickle.dump(train_columns, f)
+# Split the data into train and test sets
+x_train, x_test, y_train, y_test = train_test_split(features, labels, test_size=0.25, random_state=42)
 
-# Preprocessing the data for test
-x_test = np.array(pd.get_dummies(test_data.drop('charges', axis=1))).astype('float32')
-y_test = test_data["charges"]
+# Define preprocessing for numeric columns
+numeric_features = ['age', 'bmi', 'children']
+numeric_transformer = MinMaxScaler()
 
-# Create the model
-model = keras.Sequential([
-    keras.layers.Dense(64, activation='relu', input_shape=[len(x_train[0])]),
-    keras.layers.Dense(64, activation='relu'),
-    keras.layers.Dense(1)
+# Define preprocessing for categorical columns
+categorical_features = ['sex', 'smoker', 'region']
+categorical_transformer = OneHotEncoder(handle_unknown='ignore')
+
+# Combine all preprocessing into one transformer
+preprocessor = make_column_transformer(
+    (numeric_transformer, numeric_features),
+    (categorical_transformer, categorical_features)
+)
+
+# Preprocess the data
+x_train = preprocessor.fit_transform(x_train)
+x_test = preprocessor.transform(x_test)
+
+# Define the model
+model = tf.keras.models.Sequential([
+    tf.keras.layers.Dense(64, activation='relu', input_shape=[x_train.shape[1]]),
+    tf.keras.layers.Dense(64, activation='relu'),
+    tf.keras.layers.Dense(1)
 ])
 
 # Compile the model
@@ -37,10 +49,13 @@ model.compile(
 )
 
 # Train the model
-history = model.fit(x_train, y_train, epochs=1000, validation_split = 0.2)
+history = model.fit(x_train, y_train, epochs=500, validation_split = 0.2)
+
+with open('preprocessor.pkl', 'wb') as f:
+    pickle.dump(preprocessor, f)
 
 # Evaluate the model on the test data
-test_loss, test_mae = model.evaluate(x_test, y_test, verbose=2)
+test_loss, test_mae = model.evaluate(x_train, y_train, verbose=2)
 
 # Print the test results
 print("================= Test Results ==================")
@@ -55,7 +70,6 @@ while True:
     else:
         if answer == "y":
             print("Saving Model...")
-            # Save the model
             model.save('Insurance_cost_prediction_model')
             print("Model saved.")
             break
