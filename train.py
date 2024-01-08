@@ -36,8 +36,8 @@ x_test = preprocessor.transform(x_test)
 
 # Define the model
 model = tf.keras.models.Sequential([
-    tf.keras.layers.Dense(64, activation='relu', input_shape=[x_train.shape[1]]),
-    tf.keras.layers.Dense(64, activation='relu'),
+    tf.keras.layers.Dense(11, activation='relu', input_shape=[x_train.shape[1]]),
+    tf.keras.layers.Dense(100, activation='relu'),
     tf.keras.layers.Dense(1)
 ])
 
@@ -49,13 +49,13 @@ model.compile(
 )
 
 # Train the model
-history = model.fit(x_train, y_train, epochs=500, validation_split = 0.2)
+history = model.fit(x_train, y_train, epochs=300, validation_split = 0.2)
 
 with open('preprocessor.pkl', 'wb') as f:
     pickle.dump(preprocessor, f)
 
 # Evaluate the model on the test data
-test_loss, test_mae = model.evaluate(x_train, y_train, verbose=2)
+test_loss, test_mae = model.evaluate(x_test, y_test, verbose=2)
 
 # Print the test results
 print("================= Test Results ==================")
