@@ -21,7 +21,12 @@ First install the necessary dependencies:
 pip install -r requirements.txt
 ```
 
-After installing the required dependencies, just run the main python file:
+After installing the required dependencies, to create the model run:
+```
+python train.py
+```
+
+To use the model run:
 ```
 python main.py
 ```
