@@ -17,9 +17,9 @@ An Linear Regression Model that predicts the insurance costs basing on the follo
 
 ## How to test it?
 First use pip install in the requirements.txt ```pip install -r requirements.txt``` file to install the libraries with their respective versions to run the project.
-After installing the required libraries, just execute the main python file ```python main.py```.
+After installing the required libraries, just run the main python file ```python main.py```.
 
-**Note:** If you're having problems to execute the project, check the version of the libraries especified in the **requirements.txt** file, if they are equal to the versions especified
+**Note:** If you're having problems to run the project, check the version of the libraries especified in the **requirements.txt** file, if they are equal to the versions especified
 in the **requirements.txt** file. If some library is different, you may need to reinstall it with the correct version.
 
 ## Author
