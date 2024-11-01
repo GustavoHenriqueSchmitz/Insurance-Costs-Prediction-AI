@@ -16,7 +16,12 @@ An Linear Regression Model that predicts the insurance costs basing on the follo
 - TensorFlow
 
 ## How to test it?
-First install the necessary dependencies:
+**1 -** First clone the project:
+```
+git clone https://github.com/GustavoHenriqueSchmitz/Insurance-Costs-Prediction-AI.git
+```
+
+**2 -** Install the necessary dependencies:
 ```
 pip install -r requirements.txt
 ```
