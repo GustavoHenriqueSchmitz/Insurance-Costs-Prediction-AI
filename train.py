@@ -70,7 +70,7 @@ while True:
     else:
         if answer == "y":
             print("Saving Model...")
-            model.save('Insurance_cost_prediction_model')
+            model.save('Insurance_cost_prediction_model.h5')
             print("Model saved.")
             break
         else:

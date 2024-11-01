@@ -3,7 +3,7 @@ import pandas as pd
 import pickle
 
 # Load the model for use
-loaded_model = keras.models.load_model('Insurance_cost_prediction_model')
+loaded_model = keras.models.load_model('Insurance_cost_prediction_model.h5')
 
 # Load the preprocessor
 with open('preprocessor.pkl', 'rb') as f:
