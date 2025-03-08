@@ -15,6 +15,9 @@ An Linear Regression Model that predicts the insurance costs basing on the follo
 - Python
 - TensorFlow
 
+## Project demonstration video
+[![Insurance Costs Prediction AI Demonstration](https://img.youtube.com/vi/as0Gh8gXXdo/0.jpg)](https://www.youtube.com/watch?v=as0Gh8gXXdo)
+
 ## How to test it?
 **1 -** First clone the project:
 ```
